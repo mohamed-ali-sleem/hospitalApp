@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BaseComponent } from './views/layout/base/base.component';
-import { AuthGuard } from './core/guard/auth.guard'; 
+import { AuthGuard } from './core/guard/auth.guard';
 
 const routes: Routes = [
   {
@@ -28,6 +28,42 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () => import('./views/pages/blogs/blogs.module').then(m => m.BlogsModule)
+      },
+    ],
+    canActivate: [],
+    data: { roles: [] },
+  },
+  {
+    path: 'patient-care',
+    component: BaseComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./views/pages/patient-care/patient-care.module').then(m => m.PatientCareModule)
+      },
+    ],
+    canActivate: [],
+    data: { roles: [] },
+  },
+  {
+    path: 'departments',
+    component: BaseComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./views/pages/departments/departments.module').then(m => m.DepartmentsModule)
+      },
+    ],
+    canActivate: [],
+    data: { roles: [] },
+  },
+  {
+    path: 'appointment',
+    component: BaseComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./views/pages/appointment/appointment.module').then(m => m.AppointmentModule)
       },
     ],
     canActivate: [],
