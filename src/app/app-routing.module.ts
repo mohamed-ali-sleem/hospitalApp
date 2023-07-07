@@ -58,6 +58,18 @@ const routes: Routes = [
     data: { roles: [] },
   },
   {
+    path: 'medical-technologies',
+    component: BaseComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./views/pages/medical-technologies/medical-technologies.module').then(m => m.MedicalTechnologiesModule)
+      },
+    ],
+    canActivate: [],
+    data: { roles: [] },
+  },
+  {
     path: 'appointment',
     component: BaseComponent,
     children: [

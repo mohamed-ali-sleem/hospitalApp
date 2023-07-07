@@ -1,0 +1,41 @@
+<div class="page-banner-area bg-2 pt-100">
+  <div class="container">
+    <div class="page-banner-content">
+      <h2>Medical Technologies</h2>
+      <ul>
+        <li>
+          <a routerLink="/">
+            <i class="ri-home-8-line"></i>
+            Home
+          </a>
+        </li>
+        <li>
+          <span>Medical Technologies</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="blog-area pt-100 pb-70">
+  <div class="container">
+    <div class="section-title">
+      <span class="top-title">MEDICAL TECHNOLOGIES</span>
+      <h2>See our Medical Technologies</h2>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-3 col-md-4" *ngFor="let med of medTechs">
+        <div class="single-blog">
+          <a  >
+            <img src="{{med.image}}" alt="Image" height="250">
+          </a>
+          <div class="blog-content">
+            <h3>
+              {{med.name}}
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
