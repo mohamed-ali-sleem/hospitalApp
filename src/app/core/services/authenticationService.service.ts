@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { SessionDataService } from './session-data.service';
 import { AppConstants } from '../config/constants';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -12,9 +13,14 @@ import { AppConstants } from '../config/constants';
 export class AuthenticationService {
   constructor(private _router: Router, private _sessionDataService: SessionDataService, private _httpClient: HttpClient) { }
 
-  async login(userId: string, password: string, isRememberMe: boolean): Promise<void> {
+  login(userId: string, password: string): Observable<any> {
     const url = AppConstants.API.LOGIN_API;
+    const body = {
+      patientEmail: 'ahmedmagd@gmial.com',
+      patientPassword: '1234566'
+    };
 
+    return this._httpClient.post(url, body)
   }
 
   async logout(): Promise<void> {

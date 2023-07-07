@@ -10,9 +10,9 @@ export const AppConstants = {
     USER_BOOKING: 'USER_BOOKING'
   },
   API: {
-    LOGIN_API: `${environment.baseURL}/restapi/user/auth`,
-    
- 
+    LOGIN_API: `${environment.baseURL}/patient/login`,
+
+
   },
   FORM_FIELDS: {
     LONG: 'LONG',
