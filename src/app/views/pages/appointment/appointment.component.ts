@@ -41,6 +41,7 @@ export class AppointmentComponent {
       return;
     }
 
+
     this._appService.addAppointment(this.appointmentForm.value).subscribe((res: any) => {
       if (res && res.status === "success") {
         Swal.fire({
@@ -52,6 +53,8 @@ export class AppointmentComponent {
           icon: "success"
         });
         this.appointmentForm.reset();
+        this.f['patientID'].setValue(this.currentUser.patient_id);
+
         this.submitted = false;
       }
       else {
@@ -60,7 +63,7 @@ export class AppointmentComponent {
           position: 'top-end',
           showConfirmButton: false,
           timer: 4000,
-          title: 'Something went wrong!',
+          title: 'Something went wrong!' + res.message,
           icon: "error"
         });
       }

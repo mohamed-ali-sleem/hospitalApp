@@ -56,7 +56,7 @@ export class RegisterComponent implements OnInit {
           position: 'top-end',
           showConfirmButton: false,
           timer: 4000,
-          title: 'Something went wrong!',
+          title: 'Something went wrong!' + res.message,
           icon: "error"
         });
       }

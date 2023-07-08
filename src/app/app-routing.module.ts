@@ -79,7 +79,7 @@ const routes: Routes = [
         loadChildren: () => import('./views/pages/appointment/appointment.module').then(m => m.AppointmentModule)
       },
     ],
-    canActivate: [],
+    canActivate: [AuthGuard],
     data: { roles: [] },
   },
   {

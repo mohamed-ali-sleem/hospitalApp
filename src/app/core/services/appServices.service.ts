@@ -69,16 +69,38 @@ export class AppService {
       headers: new HttpHeaders()
         .set('Content-Type', 'application/x-www-form-urlencoded')
     })
-
   }
 
+  // Add Appointment
   addAppointment(appointment: any): Observable<any> {
-    const url = AppConstants.API.APPOINTMENT_API;
+    const url = AppConstants.API.APPOINTMENT_ADD_API;
     const body = new HttpParams()
       .set('date', appointment.date)
       .set('time', appointment.time)
       .set('doctorID', appointment.doctorID)
       .set('patientID', appointment.patientID)
+    return this._httpClient.post(url, body.toString(), {
+      headers: new HttpHeaders()
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+    })
+  }
+
+  // Delete Appointment
+  deleteAppointment(appointmentID: any): Observable<any> {
+    const url = AppConstants.API.APPOINTMENT_DELETE_API;
+    const body = new HttpParams()
+      .set('appointmentID', appointmentID)
+    return this._httpClient.post(url, body.toString(), {
+      headers: new HttpHeaders()
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+    })
+  }
+
+  // UPDATE APPOINTMENT
+  updateAppointment(appointmentID: any): Observable<any> {
+    const url = AppConstants.API.APPOINTMENT_UPDATE_API;
+    const body = new HttpParams()
+      .set('appointmentID', appointmentID)
     return this._httpClient.post(url, body.toString(), {
       headers: new HttpHeaders()
         .set('Content-Type', 'application/x-www-form-urlencoded')
