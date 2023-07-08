@@ -75,11 +75,10 @@ export class AppService {
   addAppointment(appointment: any): Observable<any> {
     const url = AppConstants.API.APPOINTMENT_API;
     const body = new HttpParams()
-      .set('patientId', appointment.patientId)
-      .set('doctorId', appointment.doctorId)
-      .set('departmentId', appointment.departmentId)
-      .set('appointmentDate', appointment.appointmentDate)
-      .set('appointmentTime', appointment.appointmentTime)
+      .set('date', appointment.date)
+      .set('time', appointment.time)
+      .set('doctorID', appointment.doctorID)
+      .set('patientID', appointment.patientID)
     return this._httpClient.post(url, body.toString(), {
       headers: new HttpHeaders()
         .set('Content-Type', 'application/x-www-form-urlencoded')

@@ -29,60 +29,55 @@
         <div class="appointment-form">
           <h2>Make An Appointment</h2>
 
-          <form>
+          <form [formGroup]="appointmentForm" (ngSubmit)="onAppointmentSubmit()">
             <div class="row">
               <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label>NAME</label>
-                  <input type="text" class="form-control" placeholder="Craig McNutt">
-                </div>
-              </div>
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label>CHOOSE DOCTOR NAME</label>
-                  <select class="form-select form-control" aria-label="Default select example">
-                    <option selected="">Barbara Ybarra</option>
-                    <option value="1">Ybarra Daek</option>
+                <div class="form-group mb-1">
+                  <label>SELECT DOCTOR</label>
+                  <select class="form-select form-control" aria-label="Default select example"
+                    formControlName="doctorID">
+                    <option value="{{ doc.doctor_id }}" *ngFor="let doc of doctors">
+                      {{ doc.doctor_name }}
+                    </option>
                   </select>
                 </div>
-              </div>
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label>EMAIL</label>
-                  <input type="email" class="form-control" placeholder="meditro@gmail.com">
+                <div class="fs-12 text-danger">
+                  <div *ngIf="submitted && f['doctorID'].errors">
+                    <div *ngIf="f['doctorID'].errors['required']"> Doctor is required </div>
+                  </div>
                 </div>
               </div>
               <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label>SELECT DEPARTMENT</label>
-                  <select class="form-select form-control" aria-label="Default select example">
-                    <option selected="">Cardiologists</option>
-                    <option value="1">Medicine</option>
-                    <option value="2">Cardiology</option>
-                    <option value="3">Surgery</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label>PHONE</label>
-                  <input type="text" class="form-control" placeholder="***********">
-                </div>
-              </div>
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
+                <div class="form-group mb-1">
                   <label>DATE</label>
-                  <input type="date" class="form-control">
+                  <input type="date" class="form-control" formControlName="date">
+                </div>
+                <div class="fs-12 text-danger">
+                  <div *ngIf="submitted && f['date'].errors">
+                    <div *ngIf="f['date'].errors['required']"> Date is required </div>
+                  </div>
                 </div>
               </div>
-              <div class="col-lg-12">
-                <div class="form-group">
-                  <label>APPOINTMENT NOTE</label>
-                  <textarea class="form-control" cols="30" rows="6" placeholder="write your note here..."></textarea>
+              <div class="col-lg-6 col-md-6 mt-4">
+                <div class="form-group mb-1">
+                  <label>TIME</label>
+                  <select class="form-select form-control" aria-label="Default select example" formControlName="time">
+                    <option value="11">11AM - 12PM</option>
+                    <option value="12">12PM - 1PM</option>
+                    <option value="1">1PM - 2PM</option>
+                    <option value="2">2PM - 3PM</option>
+                    <option value="3">3PM - 4PM</option>
+                    <option value="4">4PM - 5PM</option>
+                    <option value="5">5PM - 6PM</option>
+                  </select>
+                </div>
+                <div class="fs-12 text-danger">
+                  <div *ngIf="submitted && f['time'].errors">
+                    <div *ngIf="f['time'].errors['required']"> Time is required </div>
+                  </div>
                 </div>
               </div>
-
-              <div class="col-lg-12">
+              <div class="col-lg-12 mt-5">
                 <button type="submit" class="default-btn active">
                   Make an appointment
                 </button>

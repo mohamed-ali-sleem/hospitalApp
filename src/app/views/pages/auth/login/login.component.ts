@@ -13,12 +13,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
-
   loginForm: FormGroup;
   submitted: boolean = false;
-
-
 
   constructor(private _appService: AppService, private _formBuilder: FormBuilder,
     private _sessionDataService: SessionDataService, private _router: Router) {
