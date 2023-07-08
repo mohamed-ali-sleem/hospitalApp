@@ -5,27 +5,20 @@ export const AppConstants = {
 
   PRISISTED_KEYS: {
     ACCESS_TOKEN: 'ACCESS_TOKEN',
-    REMEMBER_ME: 'REMEMBER_ME',
+    IS_LOGGED_IN: 'IS_LOGGED_IN',
     CURRENT_USER: 'CURRENT_USER',
-    USER_BOOKING: 'USER_BOOKING'
   },
+
   API: {
-    LOGIN_API: `${environment.baseURL}/patient/login`,
 
+    LOGIN_API: `${environment.baseURL}/patient/login.php`,
+    REGISER_API: `${environment.baseURL}/patient/register.php`,
 
-  },
-  FORM_FIELDS: {
-    LONG: 'LONG',
-    SELECT: 'SELECT',
-    STRING: 'STRING',
-    BOOLEAN: 'BOOLEAN',
-    DATE_TIME: 'DATE_TIME',
-    DOUBLE: 'DOUBLE',
+    DEPARTMENT_API: `${environment.baseURL}/department/view.php`,
+
+    DOCTORS_API: `${environment.baseURL}/doctor/view.php`,
+
   },
 
 };
 
-export enum SocketClientState {
-  ATTEMPTING,
-  CONNECTED,
-}

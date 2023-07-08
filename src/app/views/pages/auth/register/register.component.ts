@@ -4,44 +4,42 @@ import { AppConstants } from 'src/app/core/config/constants';
 import { AppService } from 'src/app/core/services/appServices.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 
 
-  loginForm: FormGroup;
+  registerForm: FormGroup;
   submitted: boolean = false;
 
 
 
   constructor(private _appService: AppService, private _formBuilder: FormBuilder) {
-    this.loginForm = this._formBuilder.group({
+    this.registerForm = this._formBuilder.group({
       userId: ['', [Validators.required, Validators.email]],
+      userName: ['', Validators.required],
+      userPhone: ['', Validators.required],
       password: ['', Validators.required],
-      rememberMe: [false]
     });
   }
-
 
   ngOnInit(): void {
   }
 
-
-
   // convenience getter for easy access to form fields
   get f() {
-    return this.loginForm.controls;
+    return this.registerForm.controls;
   }
 
-  onLogin() {
+  onRegisterUser() {
     this.submitted = true;
-    if (!this.loginForm.valid) {
+    if (!this.registerForm.valid) {
       return;
     }
 
-    this._appService.login(this.loginForm.value.userId, this.loginForm.value.password).subscribe((res: any) => {
+    this._appService.registerUser(this.registerForm.value).subscribe((res: any) => {
       if (res && res.status === 200) {
         localStorage.setItem(AppConstants.PRISISTED_KEYS.IS_LOGGED_IN, JSON.stringify(true));
         localStorage.setItem(AppConstants.PRISISTED_KEYS.CURRENT_USER, JSON.stringify(res.user));

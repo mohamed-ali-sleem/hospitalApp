@@ -1,10 +1,7 @@
 import { Component, HostListener, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { Subscription } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AuthenticationService } from 'src/app/core/services/authenticationService.service';
 import { LanguageSwitchService } from 'src/app/core/services/language-switch.service';
+import { AppService } from 'src/app/core/services/appServices.service';
 
 @Component({
   selector: 'app-navbar',
@@ -18,13 +15,13 @@ export class NavbarComponent implements OnInit {
   notifications: any[] = [];
   showNotificationAlert: boolean = false
   menuOpened: boolean = false;
-  constructor(private _authenticationService: AuthenticationService, public _translate: TranslateService,
+  constructor(private _appService: AppService, public _translate: TranslateService,
     private _renderer: Renderer2, private _languageSwitchService: LanguageSwitchService,) {
   }
 
 
   @HostListener('window:scroll', ['$event'])
-  onScroll(event: any) { 
+  onScroll(event: any) {
     document.getElementById("navbar-area-id")?.classList.add("is-sticky");
 
     if (window.pageYOffset == 0) {
@@ -37,7 +34,7 @@ export class NavbarComponent implements OnInit {
   }
 
   logout(): void {
-    this._authenticationService.logout();
+    this._appService.logout();
   }
 
   async switchLanguage() {
@@ -56,5 +53,5 @@ export class NavbarComponent implements OnInit {
     // return false;
   }
 
- 
+
 }

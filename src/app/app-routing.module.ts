@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BaseComponent } from './views/layout/base/base.component';
 import { AuthGuard } from './core/guard/auth.guard';
+import { LoggedInGuard } from './core/guard/loggedIn.guard';
 
 const routes: Routes = [
   {
@@ -82,29 +83,18 @@ const routes: Routes = [
     data: { roles: [] },
   },
   {
-    path: 'login',
+    path: 'auth',
     component: BaseComponent,
     children: [
       {
         path: '',
-        loadChildren: () => import('./views/pages/login/login.module').then(m => m.LoginModule)
+        loadChildren: () => import('./views/pages/auth/auth.module').then(m => m.AuthModule)
       },
     ],
-    canActivate: [],
+    canActivate: [LoggedInGuard],
     data: { roles: [] },
   },
-  // {
-  //   path: 'auth',
-  //   component: BaseComponent,
-  //   children: [
-  //     {
-  //       path: '',
-  //       loadChildren: () => import('./views/pages/auth/auth.module').then(m => m.AuthModule)
-  //     },
-  //   ],
-  //   canActivate: [],
-  //   data: { roles: [] },
-  // },
+
   { path: '**', redirectTo: 'error', pathMatch: 'full' }
 ];
 
