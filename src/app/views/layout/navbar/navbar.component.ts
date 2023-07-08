@@ -2,6 +2,9 @@ import { Component, HostListener, OnDestroy, OnInit, Renderer2 } from '@angular/
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageSwitchService } from 'src/app/core/services/language-switch.service';
 import { AppService } from 'src/app/core/services/appServices.service';
+import { AppConstants } from 'src/app/core/config/constants';
+import { SessionDataService } from 'src/app/core/services/session-data.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -15,8 +18,14 @@ export class NavbarComponent implements OnInit {
   notifications: any[] = [];
   showNotificationAlert: boolean = false
   menuOpened: boolean = false;
+
+  userSubscription: Subscription;
+
   constructor(private _appService: AppService, public _translate: TranslateService,
+    public _sessionDataService: SessionDataService,
     private _renderer: Renderer2, private _languageSwitchService: LanguageSwitchService,) {
+      this.userSubscription = this._sessionDataService.currentUser.subscribe((x) => (
+        this.currentUser = x));
   }
 
 
@@ -30,11 +39,11 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-
   }
 
   logout(): void {
     this._appService.logout();
+    this._sessionDataService.setcurrentUser(null);
   }
 
   async switchLanguage() {

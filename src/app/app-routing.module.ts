@@ -83,6 +83,18 @@ const routes: Routes = [
     data: { roles: [] },
   },
   {
+    path: 'medical-file',
+    component: BaseComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./views/pages/medical-file/medical-file.module').then(m => m.MedicalFileModule)
+      },
+    ],
+    canActivate: [AuthGuard],
+    data: { roles: [] },
+  },
+  {
     path: 'auth',
     component: BaseComponent,
     children: [

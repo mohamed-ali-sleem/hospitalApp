@@ -20,11 +20,18 @@
 
       <div class="col-lg-4">
         <ul class="header-right-content">
-          <li>
-            <i class="ri-user-3-line"></i>
-            <a routerLink="/auth/login">Login</a>
+          <li *ngIf="!this.currentUser">
+            <i class="bi bi-box-arrow-in-right"></i>
+            <a routerLink="/auth/login" class="ms-1">Login</a>
           </li>
-
+          <li *ngIf="this.currentUser">
+            <i class="bi bi-person-fill"></i>
+            <a routerLink="/medical-file" class="ms-1"> {{ currentUser?.patient_name }}</a>
+          </li>
+          <li *ngIf="this.currentUser">
+            <i class="bi bi-box-arrow-in-left"></i>
+            <a class="text-white ms-1" (click)="logout()"> Log out</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -74,7 +81,7 @@
               </a>
             </li>
           </ul>
-          <div class="others-options">
+          <div class="others-options" *ngIf="this.currentUser">
             <ul class="d-flex align-items-center">
               <li>
                 <a routerLink="/appointment" class="default-btn">

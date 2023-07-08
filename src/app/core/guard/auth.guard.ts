@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
     let nextUrl = nextState.url;
     let currentUrl = this._router.url;
     return new Promise<boolean>((resolve, reject) => {
-      if (localStorage.getItem('isLoggedin')) {
+      if (localStorage.getItem('IS_LOGGED_IN')) {
         if (nextRoute.data['roles'] && nextRoute.data['roles'].length > 0) {
           self._router.navigate(['home']);
         }

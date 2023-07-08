@@ -18,6 +18,8 @@ export const AppConstants = {
 
     DOCTORS_API: `${environment.baseURL}/doctor/view.php`,
 
+    APPOINTMENT_API: `${environment.baseURL}/appointment/view.php`,
+    APPOINTMENT_ADD_API: `${environment.baseURL}/appointment/add.php`,
   },
 
 };

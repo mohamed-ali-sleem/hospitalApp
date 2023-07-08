@@ -30,11 +30,10 @@ export class AppService {
   registerUser(user: any): Observable<any> {
     const url = AppConstants.API.REGISER_API;
     const body = new HttpParams()
-      .set('patientEmail', user.userId)
-      .set('patientPassword', user.password)
-      .set('patientFirstName', user.firstName)
-      .set('patientLastName', user.lastName)
-      .set('patientMobile', user.mobile)
+      .set('patientEmail', user.patientEmail)
+      .set('fullName', user.fullName)
+      .set('patientPhone', user.patientPhone)
+      .set('patientPassword', user.patientPassword)
     return this._httpClient.post(url, body.toString(), {
       headers: new HttpHeaders()
         .set('Content-Type', 'application/x-www-form-urlencoded')
@@ -45,7 +44,6 @@ export class AppService {
   logout() {
     localStorage.removeItem(AppConstants.PRISISTED_KEYS.IS_LOGGED_IN);
     localStorage.removeItem(AppConstants.PRISISTED_KEYS.CURRENT_USER);
-    (window as any).MessageBirdChatWidget.logout()
     this._router.navigate(['/home']);
   }
 
@@ -55,14 +53,38 @@ export class AppService {
     return this._httpClient.get(url)
   }
 
-
   // LOAD DOCTORS LIST
   loadDoctors(): Observable<any> {
     const url = AppConstants.API.DOCTORS_API;
     return this._httpClient.get(url)
   }
 
+  // LOAD APPOINTMENTS LIST
+  loadAppointments(patientID: any): Observable<any> {
+    const url = AppConstants.API.APPOINTMENT_API;
+    const body = new HttpParams()
+      .set('patientID', patientID)
+    return this._httpClient.post(url,
+      body.toString(), {
+      headers: new HttpHeaders()
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+    })
 
+  }
+
+  addAppointment(appointment: any): Observable<any> {
+    const url = AppConstants.API.APPOINTMENT_API;
+    const body = new HttpParams()
+      .set('patientId', appointment.patientId)
+      .set('doctorId', appointment.doctorId)
+      .set('departmentId', appointment.departmentId)
+      .set('appointmentDate', appointment.appointmentDate)
+      .set('appointmentTime', appointment.appointmentTime)
+    return this._httpClient.post(url, body.toString(), {
+      headers: new HttpHeaders()
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+    })
+  }
 }
 
 
