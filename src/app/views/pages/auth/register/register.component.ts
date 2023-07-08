@@ -14,16 +14,15 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   submitted: boolean = false;
 
-
-
   constructor(private _appService: AppService, private _formBuilder: FormBuilder) {
     this.registerForm = this._formBuilder.group({
-      userId: ['', [Validators.required, Validators.email]],
-      userName: ['', Validators.required],
-      userPhone: ['', Validators.required],
-      password: ['', Validators.required],
+      patientEmail: ['', [Validators.required, Validators.email]],
+      fullName: ['', Validators.required],
+      patientPhone: ['', Validators.required],
+      patientPassword: ['', Validators.required],
     });
   }
+
 
   ngOnInit(): void {
   }
