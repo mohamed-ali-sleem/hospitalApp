@@ -107,7 +107,7 @@ const routes: Routes = [
     data: { roles: [] },
   },
 
-  { path: '**', redirectTo: 'error', pathMatch: 'full' }
+  { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
 
 @NgModule({
